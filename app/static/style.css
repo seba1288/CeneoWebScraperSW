@@ -1,0 +1,21 @@
+h1 {
+  color: orange;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: solid red 1px;
+}
+
+.listMenu {
+  border: solid red 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.listMenu li {
+  padding: 20px;
+}
