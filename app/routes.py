@@ -16,7 +16,7 @@ def extract():
         if response.status_code == requests.codes['ok']:
             page_dom = BeautifulSoup(response.text, "html.parser")
             try:
-                opinions_count = page_dom.select_one('a.product-review_link > span').text.strip()
+                opinions_count = page_dom.select_one('a.product-review__link > span').text.strip()
             except AttributeError:
                 opinions_count = 0
             if opinions_count:

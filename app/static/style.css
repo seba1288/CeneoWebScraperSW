@@ -1,21 +1,44 @@
-h1 {
-  color: orange;
+html {
+  background-color: #2a629a;
+}
+p {
+  color: #ffda78;
+}
+.siteTitle {
+  color: #ff7f3e;
+  display: flex;
+  justify-content: center;
 }
 
-.sideBar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: solid red 1px;
+span,
+label {
+  color: #ffda78;
+}
+
+h2 {
+  color: #ff7f3e;
 }
 
 .listMenu {
-  border: solid red 1px;
+  font-size: 20px;
+  padding: 20px;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
+  list-style: none;
+}
+.listMenu li {
+  width: 100%;
+  background-color: #003285;
+  text-align: center;
+}
+.listMenu a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  color: #ffda78;
 }
 
-.listMenu li {
-  padding: 20px;
+.mainContainer {
 }
