@@ -40,5 +40,12 @@ h2 {
   color: #ffda78;
 }
 
-.mainContainer {
+.fotterContainer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #003285;
+  color: white;
+  text-align: center;
 }
