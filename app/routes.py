@@ -1,12 +1,14 @@
 from app import app,utils
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,send_file
 import requests
+import datetime
 from bs4 import BeautifulSoup
 from app.utils import extract_content,score,selectors,transformation,translate
 import json
 import os
 import pandas as pd
 import numpy as np
+import io
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -28,6 +30,7 @@ def extract():
                 url = f'https://www.ceneo.pl/{product_id}#tab=reviews'
                 all_opinions = []
                 while(url):
+                    print(url, datetime.datetime.now())
                     response = requests.get(url)
                     response.status_code
                     page_dom = BeautifulSoup(response.text, "html.parser")
@@ -93,6 +96,31 @@ def author():
 def product(product_id):
     if os.path.exists('app/data/opinions'):
         with open(f'app/data/opinions/{product_id}.json','r',encoding='UTF-8')as jf:
-            opinions = json.load(jf)
-        return render_template('product.html',product_id=product_id,opinions = opinions)
+            opinions = pd.read_json(f'app/data/opinions/{product_id}.json')
+
+        return render_template('product.html',product_id=product_id,opinions = opinions.to_html(table_id='opinions'))
     return render_template('extract')
+@app.route('/product/<product_id>')
+def charts(product_id):
+    return render_template('charts.html', product_id = product_id)
+
+@app.route('/donwload_json/<product_id>')
+def donwload_json(product_id):
+    return send_file(f'data/opinions/{product_id}.json', 'text/json', as_attachment=True)
+
+@app.route('/donwload_csv/<product_id>')
+def donwload_csv(product_id):
+    opinions = pd.read_json(f'data/opinions/{product_id}.json')
+    buffer = io.BytesIO(opinions.to_csv(index=False).encode())
+    return send_file(buffer, 'text/cvs', as_attachment=True ,download_name=f'{product_id}.csv')
+
+@app.route('/donwload_xlsx/<product_id>')
+def donwload_xlsx(product_id):
+    opinions = pd.read_json(f'app/data/opinions/{product_id}.json')
+    buffer = io.BytesIO()
+    with pd.ExcelWriter(f'{product_id}.xlsx') as writer:
+        opinions.to_excel(writer, index=False)
+    buffer.seek(0)
+    return send_file(buffer, 'application/vnd.ms-excel', as_attachment=True, download_name=f'{product_id}.xlsx' )
+
+
