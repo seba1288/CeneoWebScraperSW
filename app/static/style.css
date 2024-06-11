@@ -49,3 +49,58 @@ h2 {
   color: white;
   text-align: center;
 }
+tr {
+  background-color: #003285;
+}
+td {
+  color: #ff7f3e;
+  background-color: #003285;
+}
+
+th {
+  background-color: #003285;
+}
+
+.Donwload_buttons_container {
+  margin-bottom: 20px;
+}
+
+.Donwload_buttons {
+  background-color: #2a629a;
+  color: #ffda78;
+  border: 2px solid #ff7f3e;
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px;
+}
+
+.Donwload_buttons a {
+  color: #ffda78;
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px;
+}
+
+.Donwload_buttons:hover {
+  background-color: #ff7f3e;
+  color: #ffda78;
+}
+
+.Cards_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40%;
+  background-color: #003285;
+  color: #ffda78;
+  padding: 10px;
+  margin: 15px;
+}
+
+.Card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
